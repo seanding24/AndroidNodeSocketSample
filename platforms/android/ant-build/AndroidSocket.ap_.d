@@ -38,11 +38,15 @@
 /Users/screenrewards/Documents/workspace/AndroidSocket/platforms/android/assets/www/plugins \
 /Users/screenrewards/Documents/workspace/AndroidSocket/platforms/android/assets/www/css/index.css \
 /Users/screenrewards/Documents/workspace/AndroidSocket/platforms/android/assets/www/img/logo.png \
+/Users/screenrewards/Documents/workspace/AndroidSocket/platforms/android/assets/www/js/async.min.js \
 /Users/screenrewards/Documents/workspace/AndroidSocket/platforms/android/assets/www/js/index.js \
 /Users/screenrewards/Documents/workspace/AndroidSocket/platforms/android/assets/www/js/jquery-1.11.1.min.js \
+/Users/screenrewards/Documents/workspace/AndroidSocket/platforms/android/assets/www/plugins/com.synconset.imageResizer \
 /Users/screenrewards/Documents/workspace/AndroidSocket/platforms/android/assets/www/plugins/org.apache.cordova.file \
 /Users/screenrewards/Documents/workspace/AndroidSocket/platforms/android/assets/www/plugins/org.apache.cordova.file-transfer \
 /Users/screenrewards/Documents/workspace/AndroidSocket/platforms/android/assets/www/plugins/plugin.socket.io \
+/Users/screenrewards/Documents/workspace/AndroidSocket/platforms/android/assets/www/plugins/com.synconset.imageResizer/www \
+/Users/screenrewards/Documents/workspace/AndroidSocket/platforms/android/assets/www/plugins/com.synconset.imageResizer/www/imageresize.js \
 /Users/screenrewards/Documents/workspace/AndroidSocket/platforms/android/assets/www/plugins/org.apache.cordova.file/www \
 /Users/screenrewards/Documents/workspace/AndroidSocket/platforms/android/assets/www/plugins/org.apache.cordova.file/www/android \
 /Users/screenrewards/Documents/workspace/AndroidSocket/platforms/android/assets/www/plugins/org.apache.cordova.file/www/DirectoryEntry.js \

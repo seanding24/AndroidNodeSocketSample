@@ -145,6 +145,11 @@
 /Users/screenrewards/Documents/workspace/AndroidSocket/platforms/android/ant-build/classes/com/gms/ding/R$string.class \
 /Users/screenrewards/Documents/workspace/AndroidSocket/platforms/android/ant-build/classes/com/gms/ding/R$xml.class \
 /Users/screenrewards/Documents/workspace/AndroidSocket/platforms/android/ant-build/classes/com/gms/ding/R.class \
+/Users/screenrewards/Documents/workspace/AndroidSocket/platforms/android/ant-build/classes/com/synconset/ImageResizePlugin$GetImageSize.class \
+/Users/screenrewards/Documents/workspace/AndroidSocket/platforms/android/ant-build/classes/com/synconset/ImageResizePlugin$ImageTools.class \
+/Users/screenrewards/Documents/workspace/AndroidSocket/platforms/android/ant-build/classes/com/synconset/ImageResizePlugin$ResizeImage.class \
+/Users/screenrewards/Documents/workspace/AndroidSocket/platforms/android/ant-build/classes/com/synconset/ImageResizePlugin$StoreImage.class \
+/Users/screenrewards/Documents/workspace/AndroidSocket/platforms/android/ant-build/classes/com/synconset/ImageResizePlugin.class \
 /Users/screenrewards/Documents/workspace/AndroidSocket/platforms/android/ant-build/classes/org/apache/cordova/file/ContentFilesystem.class \
 /Users/screenrewards/Documents/workspace/AndroidSocket/platforms/android/ant-build/classes/org/apache/cordova/file/DirectoryManager.class \
 /Users/screenrewards/Documents/workspace/AndroidSocket/platforms/android/ant-build/classes/org/apache/cordova/file/EncodingException.class \

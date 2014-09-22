@@ -19,6 +19,10 @@
                         {
                             "xml": "<feature name=\"SocketIO\"><param name=\"android-package\" value=\"plugin.socket.io.SocketIO\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"ImageResizePlugin\"><param name=\"android-package\" value=\"com.synconset.ImageResizePlugin\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -40,6 +44,9 @@
             "PACKAGE_NAME": "com.gms.ding"
         },
         "plugin.socket.io": {
+            "PACKAGE_NAME": "com.gms.ding"
+        },
+        "com.synconset.imageResizer": {
             "PACKAGE_NAME": "com.gms.ding"
         }
     },

@@ -1,6 +1,7 @@
 var downloadFilePath = "cdvfile://localhost/persistent/ding/";
 var adminPageIPaddress = "http://192.168.2.8:3001";
 
+
 $(document).on('deviceready', function() {
     var socket = plugin.socket.io.connect(adminPageIPaddress);
     
@@ -13,6 +14,7 @@ $(document).on('deviceready', function() {
         });
     });
     
+    
     socket.on('sendImgUrl', function(imgUrl) {
         alert(imgUrl);
         window.requestFileSystem  = window.requestFileSystem || window.webkitRequestFileSystem;
@@ -21,15 +23,35 @@ $(document).on('deviceready', function() {
         }, errorHandler);
     });
     
-    socket.on('getImgList', function() {
-      alert(" receive event ");
-      socket.emit('androidImgList', "android");
-    });
     
+    socket.on('getImgList', function() {
+        alert(" receive event ");
+        
+        async.waterfall([
+            function(callback) {
+                getFramesList(callback);
+            }, 
+            
+            function(imgArr, callback) {
+                async.map(imgArr, function(imgPackets, cback1) {
+                    async.map(imgPackets, function(packet, cback2) {
+                        setTimeout(function() {
+                            socket.emit('androidImgList', packet);
+                            cback2(null, "next");
+                        }, 200);
+                    }, cback1);
+                }, callback);
+            }
+        ], function(error, result) {
+            
+        });
+    });
+
+
     socket.on("error", function(err) {
         alert(err);
     });
-    
+
 });
 
 
@@ -66,40 +88,84 @@ function fail(error) {
 }
 
 
-function getFramesList() {
-    
-    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function (fileSystem) {
-        var sdcard = fileSystem.root;
+function getFramesList(done) {
+    async.waterfall([
+        function(callback) {
+            window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function (fileSystem) {
+                callback(null, fileSystem);
+            }, fail);
+        }, 
 
-        sdcard.getDirectory('DCIM/Camera',{create:false}, function(dcim){
+        function(fileSystem, callback) {
+            var sdcard = fileSystem.root;
+            sdcard.getDirectory('DCIM/Camera',{create:false}, function(dcim){
+                callback(null, dcim);
+            }, fail);
+        }, 
+
+        function(dcim, callback) {
             var directoryReader = dcim.createReader();
             directoryReader.readEntries(function(entries){
-                onReadEntries (entries, fileSystem);
+                async.map(entries, function(entry, cback) {
+                    var full_path = "/sdcard" + entry.fullPath;
+                    cback(null, full_path);
+                }, callback);
             }, fail);
+        }, 
 
-        }, fail);
-    }, fail);
+        function(pathArr, callback) {
+            console.log( " %%%% pathArr %%%% " + pathArr);
+            async.map(pathArr, function(imageUri, cback) {
+                encodeImageUri(imageUri, cback);
+            }, callback);
+        }, 
 
-    function onReadEntries (entries, fileSystem) {
-        var img_arr = [];
-        for (var i = 0; i < entries.length; i++) {
-            
-            console.log(entries[i]);
-            
-            var full_path = "/sdcard" + entries[i].fullPath;
-            var file_extension = getFileExtension(entries[i].name);
-            img_arr.push(full_path);
+        function(imgArr, callback) {
+            var i = 0;
+            async.map(imgArr, function(data, cback) {
+                
+                var packetSize = 5000;
+                var packets = [];
+                var cnt = 0;
+                
+                var sum = Math.ceil(data.length / packetSize);
+                while(data.length > 0) {
+                    packets.push(i + "#" + ( cnt++ ) + "#" +sum + "#" +  data.substr(0, packetSize));
+                    data = data.substr(packetSize);
+                }
+                i++;
+                cback(null, packets);
+            }, callback);
         }
-        
-        console.log(" *** img_arr ***" + img_arr);
-        
-    }
-
+    ], function(error, data) {
+        return done(null, data);
+    });
 };
+
+
+function encodeImageUri(imageUri, callback) {
+    var canvas = document.getElementById('canvas');
+    var ctx = canvas.getContext("2d");
+    var img = new Image();
+
+    img.onload = function() {
+        canvas.width = this.width;
+        canvas.height = this.height;
+        ctx.drawImage(img, 0, 0);
+
+        if(typeof callback === 'function'){
+            var dataURL = canvas.toDataURL();
+            console.log(" ==== @ dataURL size @ ==== " + dataURL.length);
+            callback(null, dataURL);
+        }
+    };
+    img.src = imageUri;
+}
+
 
 function errorHandler(e) {
     var msg = '';
-  
+
     switch (e.code) {
         case FileError.QUOTA_EXCEEDED_ERR:
             msg = 'QUOTA_EXCEEDED_ERR';

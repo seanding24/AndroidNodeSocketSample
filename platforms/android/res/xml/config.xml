@@ -15,6 +15,9 @@
     <feature name="SocketIO">
         <param name="android-package" value="plugin.socket.io.SocketIO" />
     </feature>
+    <feature name="ImageResizePlugin">
+        <param name="android-package" value="com.synconset.ImageResizePlugin" />
+    </feature>
     <name>AndroidSocket</name>
     <description>
         A sample Apache Cordova application that responds to the deviceready event.

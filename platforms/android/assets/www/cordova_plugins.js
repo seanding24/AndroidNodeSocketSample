@@ -22,6 +22,13 @@ module.exports = [
         ]
     },
     {
+        "file": "plugins/com.synconset.imageResizer/www/imageresize.js",
+        "id": "com.synconset.imageResizer.ImageResizePlugin",
+        "clobbers": [
+            "plugins.imageResizer"
+        ]
+    },
+    {
         "file": "plugins/org.apache.cordova.file/www/DirectoryEntry.js",
         "id": "org.apache.cordova.file.DirectoryEntry",
         "clobbers": [
@@ -173,6 +180,7 @@ module.exports.metadata =
 {
     "org.apache.cordova.file-transfer": "0.4.5",
     "plugin.socket.io": "1.0.0",
+    "com.synconset.imageResizer": "0.1.1",
     "org.apache.cordova.file": "1.3.0"
 }
 // BOTTOM OF METADATA
